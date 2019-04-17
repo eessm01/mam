@@ -5,7 +5,7 @@ body{
   padding: 0;
   height: auto;
   width: 100vw;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .layout {
   width: inherit;
@@ -240,9 +240,6 @@ body{
 }
 
 @media screen and (max-width: 520px) {
-  body{
-    background: grey;
-  }
   .layout {
     grid-template: 120px 0px 50px 100% 50px/ 100vw;
   }
