@@ -5,8 +5,10 @@ body{
   padding: 0;
   height: auto;
   width: 100vw;
+  border: 1px solid red;
 }
 .layout {
+  width: inherit;
   display: grid;
   grid-template: 130px 100px 100% 50px/ calc(100% - 100px) 100px;
   grid-template-areas:  "header header"
@@ -105,6 +107,7 @@ body{
 
 /* Inicia el contenido: fotos de los productos */
 .layout .content {
+  width: inherit;
   grid-area: content;
   display: grid;
   grid-gap: 20px;
@@ -139,7 +142,7 @@ body{
 }
 .layout .footer {
   grid-area: footer;
-  background-image: url(../images/footer_img.png);
+  /* background-image: url(../images/footer_img.png); */
   background-size: cover;
   background-repeat:   no-repeat;
   background-position: center center;   
@@ -182,7 +185,7 @@ body{
 
 @media screen and (max-width: 900px) {
   .layout {
-    grid-template: 130px 100px 100px 100% 50px/ 1fr;
+    grid-template: 130px 100px 100px 100% 50px/ 100vw;
     grid-template-areas:  "header"
                           "menu"
                           "category"
@@ -199,7 +202,9 @@ body{
   .layout .header .message {
     font-size: .8em;
   }
-
+  .layout .menu { 
+    grid-column: span 1;
+  }
   /* categoria */
   .layout .category {
     justify-content: flex-start;
@@ -235,6 +240,9 @@ body{
 }
 
 @media screen and (max-width: 520px) {
+  body{
+    background: grey;
+  }
   .layout {
     grid-template: 120px 0px 50px 100% 50px/ 100vw;
   }
@@ -254,9 +262,10 @@ body{
   }
   .layout .menu {
     visibility: hidden;
+    width: 0px;
   }
   .layout .menu ul li a { 
-    font-size: 1.7em;
+    font-size: .1em;
   }
   .layout .category h1 {
     font-size: 1.5em;
