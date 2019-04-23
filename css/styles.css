@@ -10,7 +10,7 @@ body{
 .layout {
   width: inherit;
   display: grid;
-  grid-template: 130px 100px 100% 50px/ calc(100% - 100px) 100px;
+  grid-template: 220px 120px 1fr 70px/ calc(100vw - 100px) 100px;
   grid-template-areas:  "header header"
                         "menu menu"
                         "content category"
@@ -20,26 +20,24 @@ body{
 .layout .header {
   grid-area: header;
   display: grid;
-  grid-template: 1fr / 80% 20%;
+  grid-template: 1fr 1fr / 85% 15%;
+  color: #58DAF5;
 }
 .layout .header .title {
-  padding: 0;
-  padding-left: 1em;
-  color: #58DAF5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.layout .header .title h1 {
   grid-row: 1;
   grid-column: 1;
+  padding: 2em 1em;
+}
+.layout .header .title h1 {
   margin: 0;
   width: 100%;
   font-size: 3em;
 }
 .layout .header .message {
-  font-size: 1.2em;
+  padding: 0 .5em;
+  grid-row: 2;
+  grid-column: 1;
+  font-size: 2em;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -51,15 +49,16 @@ body{
 
 /* logo */
 .layout .header .logo {
+  grid-row: span 2;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
 }
 .layout .header .logo img {
-  width: 80%;
+  width: 90%;
   max-width: 150px;
   height: auto;
-  padding-right: 1.5em;
+  padding: 1em;
 }
 
 /* menu */
@@ -85,9 +84,10 @@ body{
   text-decoration: none;
   transition: text-decoration 10s;
 }
-.layout .menu ul li:hover a{ 
+.layout .menu ul li:hover a { 
   text-decoration: underline;
 }
+
 
 /* categoria */
 .layout .category {
@@ -107,13 +107,13 @@ body{
 
 /* Inicia el contenido: fotos de los productos */
 .layout .content {
-  width: inherit;
   grid-area: content;
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
   grid-auto-rows: 200px;
   grid-auto-flow: dense;
+  padding: 1em;
 }
 .layout .content .search {
   width: 100vw;
@@ -121,6 +121,7 @@ body{
 .layout .content .product {
   position: relative;
   border: 5px solid #58DAF5;
+  overflow: hidden;
   -webkit-box-shadow: 6px 7px 0px -1px rgb(228, 188, 229,1);
   -moz-box-shadow: 6px 7px 0px -1px rgba(228,188,229,1);
   box-shadow: 6px 7px 0px -1px rgba(228,188,229,1);
@@ -129,6 +130,13 @@ body{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.layout .content .product:hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: zoom 4s 1;
+
 }
 .layout .content .vertical {
   grid-row: span 2; 
@@ -161,7 +169,8 @@ body{
 .mom p {
   margin: 0;
 }
-.layout .content .vertical:hover .mom {
+.layout .content .vertical:hover .mom,
+.layout .content .big:hover .mom {
   height: 40%;
   opacity: 1;
   transition-duration: 2s;
@@ -177,33 +186,39 @@ body{
   transition-duration: 2s;
 }
 
-@media screen and (max-width: 1250px) {
-  .layout .header .message {
-    font-size: .9em;
-  }
+.burger-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e4bce5;
+  color: white;
+  left: 10px;
+  top: 10px;
+  text-align: center;
+  line-height: 40px !important;
+  position: fixed;
+  z-index: 10;
+  display: none;
 }
+
 
 @media screen and (max-width: 900px) {
   .layout {
-    grid-template: 130px 100px 100px 100% 50px/ 100vw;
+    grid-template: 180px 100px 100px 100% 50px/ 100vw;
     grid-template-areas:  "header"
                           "menu"
                           "category"
                           "content"
                           "footer";
   }
+  .layout .header .title {
+    padding-bottom: 0;
+  }
   .layout .header .title h1 {
-    grid-row: 1;
-    grid-column: 1;
-    margin: 0;
-    width: 100%;
     font-size: 2.5em;
   }
   .layout .header .message {
-    font-size: .8em;
-  }
-  .layout .menu { 
-    grid-column: span 1;
+    font-size: 1.5em;
   }
   /* categoria */
   .layout .category {
@@ -219,50 +234,82 @@ body{
 
 @media screen and (max-width: 768px) {
   .layout {
-    grid-template: 120px 70px 50px 100% 50px/ 1fr;
+    grid-template: 220px 0px 60px 100% 50px/ 1fr;
   }
-  .layout .header .title h1 {
-    font-size: 1.8em;
+  .layout .header {
+    grid-area: header;
+    display: grid;
+    grid-template: .5fr 1.5fr / 85% 15%;
+    color: #58DAF5;
   }
-  .layout .header .message {
-    font-size: .6em;
-  }
-  .layout .header .message blockquote {
-    margin: .3em;
-  }
-  .layout .menu ul li a { 
-    font-size: 1.7em;
-  }
-  .layout .category h1 {
-    font-size: 1.5em;
-    line-height: .5em;
-  }
-}
-
-@media screen and (max-width: 520px) {
-  .layout {
-    grid-template: 120px 0px 50px 100% 50px/ 100vw;
-  }
-  .layout .header .title h1 {
-    font-size: 1.5em;
+  .layout .header .title {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: .5em;
   }
-  .layout .header .message {
-    font-size: .6em;
-  }
-  .layout .header .logo img {
-    padding-right: 0;
+  .layout .header .title h1 {
+    font-size: 2em;
+    width: auto;
   }
   .layout .header .message blockquote {
     margin: .3em;
   }
   .layout .menu {
-    visibility: hidden;
-    width: 0px;
+    position: fixed;
+    z-index: 9;
+    left: -100vw;
+    top: 0;
+    background: white;
+    padding-top: 40px;
+    width: 100vw;
+    height: 100vh;
+    align-items: flex-start;
   }
-  .layout .menu ul li a { 
-    font-size: .1em;
+  .layout .menu.is-active {
+    left: 0;
+  }
+  .layout .menu ul {
+    display: block;
+  }
+  .layout .menu ul li { 
+    padding: .5em;
+    width: 100%;
+  }
+  .layout .category {
+    margin-left: 10px;
+  }
+  .layout .category h1 {
+    font-size: 1.5em;
+    line-height: .5em;
+  }
+  .burger-button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .layout {
+    grid-template: 210px 0px 50px 100% 50px/ 100vw;
+  }
+  .layout .header .title {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin: 0;
+    padding: 2em .5em 0 .5em;
+  }
+  .layout .header .message {
+    font-size: 1.3em;
+    padding: .5em .2em;
+  }
+  .layout .header .logo {
+    padding: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .layout .header .message blockquote {
+    margin: .2em;
   }
   .layout .category h1 {
     font-size: 1.5em;
@@ -271,15 +318,67 @@ body{
 }
 
 @media screen and (max-width: 385px) {
-  .layout .header {
-    grid-area: header;
-    display: grid;
-    grid-template: 1fr / 85% 15%;
-  }
   .layout .content {
     grid-gap: 10px;
   }
+  .layout .header .title h1 {
+    font-size: 1.5em;
+  }
   .mom p {
     font-size: .8em;
+  }
+}
+
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?mlzes5');
+  src:  url('../fonts/icomoon.eot?mlzes5#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?mlzes5') format('truetype'),
+    url('../fonts/icomoon.woff?mlzes5') format('woff'),
+    url('../fonts/icomoon.svg?mlzes5#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone:before {
+  content: "\e942";
+}
+.icon-list2:before {
+  content: "\e9bb";
+}
+.icon-menu:before {
+  content: "\e9bd";
+}
+.icon-whatsapp:before {
+  content: "\ea93";
+}
+
+
+/* animaciones */
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
