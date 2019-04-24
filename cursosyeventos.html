@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mamás apoyando a mamás</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <i class="icon-menu burger-button" id="burger-button"></i>
+  <div class="layout">
+    <div class="header">
+      <!-- titulo -->
+      <div class="title">
+         
+        <h1>Mamás apoyando a mamás</h1>
+      </div>
+      <div class="message">
+          <blockquote>
+            <p>Somos un grupo de madres emprendedoras, en pro de la crianza respetuosa, la ecología, 
+                de la lactancia, de la belleza, de ser la mejor opción para criar a nuestros hijos. 
+            </p>
+            <p class="cita">
+              "Las mujeres queremos belleza en el mundo y en nuestras vidas. Nuestra misión es dar y preservar la vida"
+            Isabel Allende.
+            </p>
+            <blockquote>
+      </div>
+      <!-- logo -->
+      <div class="logo"><img src="images/logo_mam.png" alt=""></div>
+    </div>
+    <!-- menu --> 
+    <div class="menu">
+        <nav>
+            <ul>
+                <li><a class="link" href="index.html">Bebés</a></li>
+                <li><a class="link" href="saludycuidado.html">Salud y cuidado</a></li>
+                <li><a class="link" href="artesanias.html">Artesanías</a></li>
+                <li><a class="link" href="usados.html">Productos usados</a></li>
+                <li><a class="link" href="servicios.html">Servicios</a></li>
+                <li><a class="link" href="cursosyeventos.html">Cursos y Eventos</a></li>
+            </ul>
+          </nav>
+    </div>
+    <!-- Contenido del sitio: productos -->
+    <div class="content">
+      <div class="product big">
+          <img src="products/cursosyeventos/IMG-20190322-WA0023.jpg" alt="">
+          <div class="mom">
+            <h1>$500</h1>
+            <p>Contacto:</p>
+            <p>Adela Méndez Suárez</p>
+            <p>whatsapp: 55 6345 4244</p>
+            <p>https://www.paginax.com</p>
+          </div>
+      </div>
+    <div class="category">
+      <h1>Cursos y eventos</h1>
+    </div>
+    <!-- <div class="footer">Footer</div> -->
+  </div>
+  <script>
+    const ipad = window.matchMedia('screen and (max-width: 768px)')
+    const menu = document.querySelector('.menu')
+    const burgerButton = document.querySelector('#burger-button')
+    const links = document.querySelectorAll('.link')
+
+    ipad.addListener(validation) //para que se ejecute requiere un cambio en la pantalla
+    
+    
+
+    // valida que el media query sea el correcto para prender o no el listener
+    function validation(event) {
+      // console.log(event.matches)
+      if (event.matches) {   
+        burgerButton.addEventListener('click',hideShow)
+        // link.addEventListener('click',hideShow)
+        Array.from(links).forEach( link=> { 
+          link.addEventListener('click',hideShow)
+        })
+      }
+      else {
+        burgerButton.removeEventListener('click',hideShow)
+      }
+    }
+    
+    // para que funcione el menÃº de hamburguesa en la recarga
+    validation(ipad) //ipad regresa un true o false si se entra o no al media query
+    //para que escuche desde la recarga
+    // if (ipad.matches) {
+    //   burgerButton.addEventListener('click',hideShow)
+    // }
+
+    //agrega o quita la clase para mostrar u ocultar el menu
+    function hideShow() {
+      if (menu.classList.contains('is-active')) {
+        menu.classList.remove('is-active')
+      }
+      else {
+        menu.classList.add('is-active')
+      }
+    }
+  </script>
+</body>
+</html>

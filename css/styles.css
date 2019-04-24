@@ -371,21 +371,20 @@ body{
     font-size: .8em;
   }
   .burger-button {
-    /* width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #e4bce5;
-    color: white; */
     left: calc(100vw - 50px);
     top: 45px;
-    /* text-align: center;
-    line-height: 40px !important;
-    position: fixed;
-    z-index: 10;
-    display: none; */
   }
 }
 
+@media screen and (max-width: 230px) {
+  .layout {
+    grid-template: 500px 0px 50px 100% 50px/ 100vw;
+  }
+  .layout .header .message {
+    font-size: 1em;
+    padding: .5em .2em;
+  }
+}
 
 @font-face {
   font-family: 'icomoon';
